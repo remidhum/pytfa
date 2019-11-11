@@ -555,20 +555,3 @@ class NegSlackLC(MetaboliteVariable):
 
     prefix = 'NegSlackLC_'
 
-class ForwardBackwardUseVariable(ReactionVariable, BinaryVariable):
-    """
-    This variable tells us whether the reaction is active or not:
-        FU + BU + BFUSE = 1
-    """
-
-    def __init__(self, reaction, **kwargs):
-        if not 'lb' in kwargs:
-            kwargs['lb'] = 0
-        if not 'ub' in kwargs:
-            kwargs['ub'] = 1
-
-        ReactionVariable.__init__(self, reaction,
-                                  type=get_binary_type(),
-                                  **kwargs)
-
-    prefix = 'BFUSE_'

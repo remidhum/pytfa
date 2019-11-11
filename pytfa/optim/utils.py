@@ -80,31 +80,31 @@ def chunk_sum(variables):
 
 def symbol_sum(variables):
     """
-
+    
     ``` python
     a = symbols('a0:100')
-
+    
     %timeit Add(*a)
     # >>> 10000 loops, best of 3: 34.1 µs per loop
-
+    
     b = symbols('b0:1000')
-
+    
     %timeit Add(*b)
     # >>> 1000 loops, best of 3: 343 µs per loop
-
+    
     c = symbols('c0:3000')
-
+    
     %timeit Add(*c)
     # >>> 1 loops, best of 3: 1.03 ms per loop
     ```
-
+    
     See the `github thread <https://github.com/sympy/sympy/issues/13945>`_
     :param variables:
     :return:
     """
 
     from sympy import Add
-
+    
     k=0
     # If we encounter a zero, which is a special type, increase k
     while isinstance(variables[k], sympy.numbers.Zero) and k<len(variables):
@@ -324,3 +324,5 @@ def copy_solver_configuration(source, target):
 
     # Verbosity
     target.solver.configuration.verbosity = source.solver.configuration.verbosity
+
+

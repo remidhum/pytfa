@@ -333,7 +333,7 @@ class DisplacementCoupling(ReactionConstraint):
 
     prefix = 'DC_'
 
-class ForbiddenProfile(ModelConstraint):
+class ForbiddenProfile(GenericConstraint):
     """
     Class to represent a forbidden net flux directionality profile
     Looks like:
@@ -349,38 +349,3 @@ class ForbiddenProfile(ModelConstraint):
                                    **kwargs)
 
     prefix = 'FP_'
-
-class ForceMinFlux(ReactionConstraint):
-    """
-    Class to represent a constraint the implements
-    """
-
-    def __init__(self, reaction, expr, **kwargs):
-        ReactionConstraint.__init__(self, reaction, expr, **kwargs)
-
-    prefix = 'FMF_'
-
-class ActiveReaction(ReactionConstraint):
-    """
-    Class to represent a constraint the implements
-    """
-
-    def __init__(self, reaction, expr, **kwargs):
-        ReactionConstraint.__init__(self, reaction, expr, **kwargs)
-
-    prefix = 'AR_'
-
-class FluxSum(ModelConstraint):
-    """
-    Class to represent a constraint the implements
-    """
-
-    def __init__(self, model, expr, id_, **kwargs):
-
-        GenericConstraint.__init__(self,
-                                   id_=id_,
-                                   expr=expr,
-                                   model=model,
-                                   **kwargs)
-
-    prefix = 'SF_'

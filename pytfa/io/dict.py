@@ -43,6 +43,7 @@ def get_model_variable_subclasses():
 def get_model_constraint_subclasses():
    return make_subclasses_dict(ModelConstraint)
 
+
 BASE_NAME2HOOK = {
                     ReactionVariable    :'reactions',
                     ReactionConstraint  :'reactions',
@@ -298,7 +299,6 @@ def model_from_dict(obj, solver=None, custom_hooks = None):
                                   lb=lb,
                                   queue=True,
                                   scaling_factor=scaling_factor)
-
         elif classname in name2class:
             hook = name2hook[classname].get_by_id(this_id)
             this_class = name2class[classname]
@@ -308,7 +308,6 @@ def model_from_dict(obj, solver=None, custom_hooks = None):
                                   lb = lb,
                                   queue=True,
                                   scaling_factor=scaling_factor)
-
         else:
             raise TypeError(
                 'Class {} serialization not handled yet' \
@@ -344,7 +343,6 @@ def model_from_dict(obj, solver=None, custom_hooks = None):
                                     ub = ub,
                                     lb = lb,
                                     queue=True)
-
         elif classname in name2class:
             hook = name2hook[classname].get_by_id(this_id)
             this_class = name2class[classname]
@@ -373,11 +371,8 @@ def model_from_dict(obj, solver=None, custom_hooks = None):
     return new
 
 def rebuild_obj_from_dict(new, objective_dict):
-    if objective_dict.__class__ is dict:
-        obj_expr = symbol_sum([v*new.variables.get(x) for x,v in objective_dict.items()])
-        new.objective = obj_expr
-    else:
-        new.objective = 0
+    obj_expr = symbol_sum([v*new.variables.get(x) for x,v in objective_dict.items()])
+    new.objective = obj_expr
 
 def add_custom_classes(model, custom_hooks):
     """
@@ -451,3 +446,5 @@ def _rebuild_stoichiometry(new, stoich):
     return defaultdict(int,
                        {new.metabolites.get_by_id(k):v
                         for k,v in stoich.items()})
+
+
